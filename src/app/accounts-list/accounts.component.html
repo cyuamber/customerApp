@@ -1,0 +1,16 @@
+<p *ngIf="listPeople">
+  My name is {{initName | uppercase}}
+</p>
+<input [(ngModel)]="initName" placeholder="please input your name">
+
+<hr>
+<div>
+  <app-account-detail [person]="selectItem"></app-account-detail>
+  <ul class="name-list">
+    <li *ngFor="let single of listPeople" [class.clickItem]="single === selectItem" (click)="onSelectName(single)">
+      <p>姓名：{{single.name}}</p>
+      <p>年龄：{{single.age}}</p>
+      <p>工龄：{{single.worktime}}</p>
+    </li>
+  </ul>
+</div>
