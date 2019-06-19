@@ -2,7 +2,7 @@
  * @Author: Xu Ran 
  * @Date: 2019-06-17 16:21:51 
  * @Last Modified by: Xu Ran
- * @Last Modified time: 2019-06-17 18:58:13
+ * @Last Modified time: 2019-06-18 17:19:47
  */
 
 
@@ -27,6 +27,8 @@ export class AccountService {
   }
 
   getPeople(): Observable<Person[]> {
+    console.log('====getpeople====')
+    this.MessageService.clear();
     this.MessageService.add('Successfully rendered!');
     //of(PERSON) 会返回一个 Observable<Person[]>，它会发出单个值，这个值就是人员数组（person），这个值可以在component中接收到
     return of(this.personList)

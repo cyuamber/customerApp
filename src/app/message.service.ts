@@ -7,7 +7,7 @@ export class MessageService {
 
   constructor() { }
 
-  messages: string[] = [];
+  messages: string[] = ["There's no people here!"];
 
   add(messages: string) {
     this.messages.push(messages);
@@ -17,7 +17,6 @@ export class MessageService {
   }
 
   clear() {
-    console.log('====clear')
     this.messages = [];
   }
 }

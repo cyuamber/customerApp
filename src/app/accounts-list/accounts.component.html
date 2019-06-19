@@ -1,10 +1,14 @@
+<!-- 双向绑定和管道 -->
 <p *ngIf="listPeople">
   My name is {{initName | uppercase}}
 </p>
 <input [(ngModel)]="initName" placeholder="please input your name">
+
 <hr>
+
 <div>
-  <app-account-detail [person]="selectItem"></app-account-detail>
+  <!-- 父组件通过EventEmitter的方式监听子组件的传值，在将这个值绑定到一个event上去 -->
+  <app-account-detail [person]="selectItem" (selectedClear)="ifSelectedClear($event)"></app-account-detail>
   <ul class="name-list">
     <li *ngFor="let single of listPeople" [class.clickItem]="single === selectItem" (click)="onSelectName(single)">
       <p>姓名：{{single.name}}</p>

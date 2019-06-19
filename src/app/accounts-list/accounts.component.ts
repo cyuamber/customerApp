@@ -2,11 +2,10 @@
 * @Author: Xu Ran 
 * @Date: 2019-06-17 16:23:51 
  * @Last Modified by: Xu Ran
- * @Last Modified time: 2019-06-17 18:59:46
+ * @Last Modified time: 2019-06-18 18:05:54
  */
 
 import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { Person } from '../people';
 import { AccountService } from '../account.service';
 
@@ -16,24 +15,31 @@ import { AccountService } from '../account.service';
   styleUrls: ['./accounts.component.less']
 })
 export class AccountListComponent implements OnInit {
-  constructor(private spinner: NgxSpinnerService, private AccountService: AccountService) { }
+  constructor(private AccountService: AccountService) { }
   listPeople: Person[];
   initName: string = "";
 
   ngOnInit() {
     this.getPeople();
-    this.spinner.show();
   }
 
   getPeople(): void {
     //在 Component 中也向本服务中的Observable<Hero[]>形式看齐,需要通过subscribe来订阅这个服务
     //关键的点在于：Observable.subscribe()，这个值是由service中的Observable对象返回的
     this.AccountService.getPeople().subscribe(person => this.listPeople = person)
+    this.selectItem = JSON.parse(window.sessionStorage.getItem("currentSelectName"));
   }
 
   selectItem: Person;
 
   onSelectName(item: Person): void {
+    window.sessionStorage.setItem('currentSelectName', JSON.stringify(item));
+    console.log(window.sessionStorage.getItem("currentSelectName"))
     this.selectItem = item;
+    this.ifSelectedClear(false);
+  }
+
+  ifSelectedClear(select: boolean) {
+    this.selectItem = select ? null : this.selectItem;
   }
 }

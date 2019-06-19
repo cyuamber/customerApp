@@ -1,13 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <app-account-list></app-account-list>
-  <app-messages></app-messages>
+  <h2>Welcome to {{ title }}!</h2>
+  <nav class="app-menu">
+    <a class="app-menu-item" routerLink="/accountlist">accountlist</a>
+    <a class="app-menu-item" routerLink="/accountpic">accountpic</a>
+  </nav>
+  <!-- <app-account-list></app-account-list> -->
+  <!-- <app-messages></app-messages> -->
   <router-outlet></router-outlet>
-  <ngx-spinner bdOpacity=0.5 bdColor="rgba(51,51,51,0.85)" size="default" color="#5dbebb" type="ball-clip-rotate"
+  <!-- <ngx-spinner bdOpacity=0.5 bdColor="rgba(51,51,51,0.85)" size="default" color="#5dbebb" type="ball-clip-rotate"
     [fullScreen]="true">
     <p style="font-size: 20px; color: white">Loading...</p>
-  </ngx-spinner>
+  </ngx-spinner> -->
 </div>
