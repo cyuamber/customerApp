@@ -1,0 +1,15 @@
+<!-- 双向绑定和管道 -->
+<!-- <p>
+    My name is {{initName | uppercase}}
+  </p> -->
+<div class="account-input-container">
+  <mat-form-field>
+    <input matInput [formControl]="emptyInputControl" [errorStateMatcher]="matcher" [(ngModel)]="initName"
+      placeholder="请输入用户名">
+    <mat-error *ngIf="emptyInputControl.hasError('required')">
+      用户名为必填项
+    </mat-error>
+  </mat-form-field>
+  <button mat-raised-button class="account-input-button" color="primary" (click)="this.handleLogin(initName)">Log
+    in</button>
+</div>

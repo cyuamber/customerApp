@@ -6,7 +6,7 @@ import { AccountPictureComponent } from './account-picture/account-picture.compo
 const routes: Routes = [
   { path: '', redirectTo: '/accountlist', pathMatch: 'full' },
   { path: 'accountlist', component: AccountListComponent },
-  { path: 'accountpic', component: AccountPictureComponent },
+  { path: 'accountpic/:id', component: AccountPictureComponent },
 ];
 
 @NgModule({

@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CustomerApp';
+  storageId = window.sessionStorage.getItem('name');
 }

@@ -7,7 +7,7 @@
       <mat-chip color="primary"> 年龄：{{person.age}} </mat-chip>
       <mat-chip color="primary">工龄：{{person.worktime}}</mat-chip>
     </mat-chip-list>
-    <button mat-raised-button color="primary" *ngIf="person" (click)="this.showPicture(person.name)">view
+    <button mat-raised-button color="primary" *ngIf="person" (click)="this.showPicture(person.id)">view
       picture</button>
   </div>
   <button mat-raised-button color="primary" (click)="this.addPerson()">add person</button>

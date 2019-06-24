@@ -1,14 +1,38 @@
-<!-- 双向绑定和管道 -->
-<p *ngIf="listPeople">
-  My name is {{initName | uppercase}}
-</p>
-<input [(ngModel)]="initName" placeholder="please input your name">
-
-<hr>
-
 <div>
+  <app-account-input></app-account-input>
   <!-- 父组件通过EventEmitter的方式监听子组件的传值，在将这个值绑定到一个event上去 -->
-  <app-account-detail [person]="selectItem" (selectedClear)="ifSelectedClear($event)"></app-account-detail>
+  <app-account-detail [person]="selectItem" (addNewInput)="addNewInput($event)"
+    (selectedClear)="ifSelectedClear($event)"></app-account-detail>
+
+  <table mat-table [dataSource]="listPeople" class="mat-elevation-z8 account-list-table">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+    <!-- Name Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Age </th>
+      <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef> Worktime </th>
+      <td mat-cell *matCellDef="let element"> {{element.worktime}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr class="account-list-table-row" mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="onSelectName(row)" [class.clickItem]="row === selectItem"></tr>
+  </table>
+
+
   <ul class="name-list">
     <li *ngFor="let single of listPeople" [class.clickItem]="single === selectItem" (click)="onSelectName(single)">
       <p>姓名：{{single.name}}</p>

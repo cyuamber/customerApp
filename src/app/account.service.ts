@@ -2,7 +2,7 @@
  * @Author: Xu Ran 
  * @Date: 2019-06-17 16:21:51 
  * @Last Modified by: Xu Ran
- * @Last Modified time: 2019-06-18 17:19:47
+ * @Last Modified time: 2019-06-21 16:31:03
  */
 
 
@@ -20,14 +20,19 @@ export class AccountService {
   constructor(private MessageService: MessageService) { }
 
   personList = PERSON;
+  picturePath = "../assets/avatars/01.jpeg"
 
-  addPerson(person: { name: string, age: number, worktime: number }) {
+  addPerson(person: { id: string, name: string, age: number, worktime: number }) {
     this.personList.push(person);
     this.MessageService.show('Successfully added!');
+    this.getPeople();
+  }
+
+  getPersonPicture(id: string): Observable<string> {
+    return of(this.picturePath = `../assets/avatars/${id}.jpeg`)
   }
 
   getPeople(): Observable<Person[]> {
-    console.log('====getpeople====')
     this.MessageService.clear();
     this.MessageService.add('Successfully rendered!');
     //of(PERSON) 会返回一个 Observable<Person[]>，它会发出单个值，这个值就是人员数组（person），这个值可以在component中接收到
